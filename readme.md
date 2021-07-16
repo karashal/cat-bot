@@ -5,10 +5,10 @@
 ```lineBreak()``` - line break.
 
 #### These methods consume energy.
-```greet()``` - to greet.
-```makeSound()``` - make natural sound.
+```greet()``` - to greet.  
+```makeSound()``` - make natural sound.  
 ```jump()``` - jump.
 
 #### These methods replenish energy.
-```eat()``` - eat.
+```eat()``` - eat.  
 ```sleep()``` - sleep.
