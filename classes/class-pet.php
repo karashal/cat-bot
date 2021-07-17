@@ -6,7 +6,13 @@ abstract class Pet
 	protected $age;
 	protected $energy;
 
-	abstract public function __construct($name, $age, $energy);
+	public function __construct($name, $age, $energy)
+	{
+		$this->name   = $name;
+		$this->age    = $age;
+		$this->energy = $energy;
+	}
+
 	abstract public function __destruct();
 	abstract public function __toString();
 }

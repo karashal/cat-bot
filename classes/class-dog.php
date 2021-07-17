@@ -6,9 +6,7 @@ class Dog extends Pet
 {
 	public function __construct($name, $age, $energy)
 	{
-		$this->name   = $name;
-		$this->age    = $age;
-		$this->energy = $energy;
+		parent::__construct($name, $age, $energy);
 
 		echo $this->showEnergy();
 	}

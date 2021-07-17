@@ -1,6 +1,6 @@
 <?php
 
-require_once 'class-dog.php';
+require_once 'classes/class-dog.php';
 
 $toby = new Dog('toby', 3, 100);
 $toby->lineBreak();
