@@ -10,12 +10,12 @@ class Dog extends Pet
 		$this->age    = $age;
 		$this->energy = $energy;
 
-		echo 'My energy at the moment: ' . $this->energy . '.';
+		echo $this->showEnergy();
 	}
 
 	public function __destruct()
 	{
-		echo 'My energy at the moment: ' . $this->energy . '.';
+		echo $this->showEnergy();
 	}
 
 	public function __toString()
@@ -56,5 +56,10 @@ class Dog extends Pet
 	{
 		$this->energy += 50;
 		return 'Yes, I slept.';
+	}
+
+	private function showEnergy()
+	{
+		return 'My energy at the moment: ' . $this->energy . '.';
 	}
 }
