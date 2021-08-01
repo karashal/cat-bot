@@ -1,10 +1,12 @@
 <?php
 
-require_once 'class-pet.php';
+namespace App\Main;
+
+require_once 'pet.php';
 
 class Dog extends Pet
 {
-	public function __construct($name, $age, $energy)
+	public function __construct(string $name, int $age, int $energy)
 	{
 		parent::__construct($name, $age, $energy);
 
@@ -16,48 +18,42 @@ class Dog extends Pet
 		echo $this->showEnergy();
 	}
 
-	public function __toString()
+	public function about() : string
 	{
 		return 'This is a dog.';
 	}
 
-	public function lineBreak()
-	{
-		echo "\n";
-	}
-
-	public function greet()
-	{
-		$this->energy -= 10;
-		return 'Hi! My name is ' . $this->name . '. I\'m ' . $this->age . ' years old.';
-	}
-
-	public function makeSound()
+	public function makeSound() : string
 	{
 		$this->energy -= 10;
 		return 'Wof-wof!';
 	}
 
-	public function jump()
+	public function jump() : string
 	{
 		$this->energy -= 10;
-		return $this->name . ' jumping.';
+		return $this->formattingName() . ' jumping.';
 	}
 
-	public function eat()
+	public function eat() : string
 	{
 		$this->energy += 30;
 		return 'Thanks! I have eaten.';
 	}
 
-	public function sleep()
+	public function sleep() : string
 	{
 		$this->energy += 50;
 		return 'Yes, I slept.';
 	}
 
-	private function showEnergy()
+	private function showEnergy() : string
 	{
 		return 'My energy at the moment: ' . $this->energy . '.';
+	}
+
+	private function formattingName() : string
+	{
+		return ucfirst(strtolower($this->name));
 	}
 }

@@ -1,12 +1,14 @@
 <?php
 
+namespace App\Main;
+
 abstract class Pet
 {
 	protected $name;
 	protected $age;
 	protected $energy;
 
-	public function __construct($name, $age, $energy)
+	public function __construct(string $name, int $age, int $energy)
 	{
 		$this->name   = $name;
 		$this->age    = $age;
@@ -14,5 +16,4 @@ abstract class Pet
 	}
 
 	abstract public function __destruct();
-	abstract public function __toString();
 }

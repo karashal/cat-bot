@@ -2,13 +2,12 @@
 
 ### Methods:
 
-```lineBreak()``` - line break.
+```about()``` - about.
 
 #### These methods consume energy.
-```greet()``` - to greet.  
-```makeSound()``` - make natural sound.  
-```jump()``` - jump.
+```makeSound()``` - make natural sound. -10 energy.  
+```jump()``` - jump. - 10 energy.
 
 #### These methods replenish energy.
-```eat()``` - eat.  
-```sleep()``` - sleep.
+```eat()``` - eat. +30 energy.  
+```sleep()``` - sleep. + 50 energy.
