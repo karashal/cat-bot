@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Main;
-
-require_once 'pet.php';
+namespace App;
 
 class Dog extends Pet
 {
