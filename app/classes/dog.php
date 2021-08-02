@@ -4,9 +4,9 @@ namespace App;
 
 final class Dog extends Pet
 {
-	public function __construct(string $name, int $age, int $energy, int $min = 0, int $max = 100)
+	public function __construct(string $name, int $age, int $energy, int $min = 0, int $max = 100, array $errors = [])
 	{
-		parent::__construct($name, $age, $energy, $min, $max);
+		parent::__construct($name, $age, $energy, $min, $max, $errors);
 
 		echo $this->showEnergy();
 	}
@@ -48,6 +48,12 @@ final class Dog extends Pet
 	{
 		$this->energy += 50;
 		return 'Yes, I slept.';
+	}
+
+	// in developing
+	private function checkEnergy() : bool
+	{
+		return (($this->showEnergy <= 0) || ($this->showEnergy >= 100)) ? true : false;
 	}
 
 	private function formattingName() : string
