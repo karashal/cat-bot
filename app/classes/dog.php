@@ -2,11 +2,11 @@
 
 namespace App;
 
-class Dog extends Pet
+final class Dog extends Pet
 {
-	public function __construct(string $name, int $age, int $energy)
+	public function __construct(string $name, int $age, int $energy, int $min = 0, int $max = 100)
 	{
-		parent::__construct($name, $age, $energy);
+		parent::__construct($name, $age, $energy, $min, $max);
 
 		echo $this->showEnergy();
 	}
@@ -19,6 +19,11 @@ class Dog extends Pet
 	public function about() : string
 	{
 		return 'This is a dog.';
+	}
+
+	public function showEnergy() : string
+	{
+		return 'My energy at the moment: ' . $this->energy . '.';
 	}
 
 	public function makeSound() : string
@@ -43,11 +48,6 @@ class Dog extends Pet
 	{
 		$this->energy += 50;
 		return 'Yes, I slept.';
-	}
-
-	private function showEnergy() : string
-	{
-		return 'My energy at the moment: ' . $this->energy . '.';
 	}
 
 	private function formattingName() : string
