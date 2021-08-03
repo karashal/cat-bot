@@ -7,18 +7,15 @@ final class Pet
 	private $name;
 	private $age;
 	private $energy;
-	private $min;
-	private $max;
-	private $errors;
+	private $min    = 0;
+	private $max    = 100;
+	private $errors = [];
 
-	public function __construct(string $name, int $age, int $energy, int $min = 1, int $max = 100, array $errors = [])
+	public function __construct(string $name, int $age, int $energy)
 	{
 		$this->name   = $name;
 		$this->age    = $age;
 		$this->energy = $energy;
-		$this->min    = $min;
-		$this->max    = $max;
-		$this->errors = $errors;
 
 		$this->checkEnergy();
 
