@@ -2,6 +2,21 @@
 
 namespace App;
 
+class PetException extends \Exception
+{
+
+}
+
+class MinEnergyException extends PetException
+{
+	protected $message = 'MinEnergyError: the minimum energy must be at least 1!';
+}
+
+class MaxEnergyException extends PetException
+{
+	protected $message = 'MaxEnergyError: the maximum energy should not be more than 100!';
+}
+
 final class Pet
 {
 	private $name;
@@ -27,6 +42,7 @@ final class Pet
 		echo $this->showEnergy();
 	}
 
+	// Information about the pet.
 	public function about() : string
 	{
 		return 'This is a pet.';
@@ -48,6 +64,7 @@ final class Pet
 		}
 	}
 
+	// These methods consume energy.
 	public function makeSound() : string
 	{
 		$this->energy -= 10;
@@ -60,6 +77,7 @@ final class Pet
 		return $this->formattingName() . ' jumping.';
 	}
 
+	// These methods replenish energy.
 	public function eat() : string
 	{
 		$this->energy += 30;
@@ -72,30 +90,21 @@ final class Pet
 		return 'Yes, I slept.';
 	}
 
+	// Formatting.
 	private function formattingName() : string
 	{
 		return ucfirst(strtolower($this->name));
 	}
 
 	// These methods in developing.
-	private function limitEnergy() : bool
-	{
-		return (($this->energy <= $this->min) || ($this->energy > $this->max)) ? true : false;
-	}
-
 	private function checkEnergy()
 	{
-		if ($this->limitEnergy() == true) {
-			$this->errors[] = 'EnergyError: Minimum energy - 1. Maximum energy - 100!';
-			$this->showErrors();
+		if ($this->energy <= $this->min) {
+			throw new MinEnergyException;
 		}
-	}
 
-	private function showErrors()
-	{
-		foreach ($this->errors as $error) {
-			echo $error . '<br>';
-			exit();
+		if ($this->energy > $this->max) {
+			throw new MaxEnergyException;
 		}
 	}
 }
