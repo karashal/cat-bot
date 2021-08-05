@@ -2,24 +2,24 @@
 
 // For test. .gitignore.
 
-use App\Pet as Pet;
-use App\PetException as PetException;
+use App\Main\Cat as Cat;
+use App\Exception\CatException as CatException;
 
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 try {
-	$toby = new Pet('toby', 8, 0);
+	$myFirstCat = new Cat('abbey', 8, 100);
 	echo '<br>';
-	echo $toby->condition() . '<br>';
-	echo $toby->about() . '<br>';
-	// echo $toby->sleep() . '<br>';
-	echo $toby->makeSound() . '<br>';
-	echo $toby->showEnergy() . '<br>';
-	echo $toby->condition() . '<br>';
-	// echo $toby->eat() . '<br>';
-	echo $toby->jump() . '<br>';
-	echo $toby->makeSound() . '<br>';
-	echo $toby->condition() . '<br>';
-} catch (PetException $e) {
+	echo $myFirstCat->condition() . '<br>';
+	echo $myFirstCat->great() . '<br>';
+	// echo $myFirstCat->sleep() . '<br>';
+	echo $myFirstCat->makeSound() . '<br>';
+	echo $myFirstCat->showEnergy() . '<br>';
+	echo $myFirstCat->condition() . '<br>';
+	// echo $myFirstCat->eat() . '<br>';
+	echo $myFirstCat->jump() . '<br>';
+	echo $myFirstCat->makeSound() . '<br>';
+	echo $myFirstCat->condition() . '<br>';
+} catch (CatException $e) {
 	echo $e->getMessage() . '<br>';
 }
