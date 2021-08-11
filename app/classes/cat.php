@@ -2,8 +2,6 @@
 
 namespace App\Main;
 
-require_once __DIR__ . '/cat-exception.php';
-
 use App\Exception\ShortNameException;
 use App\Exception\LongNameException;
 use App\Exception\MinimumAgeException;
@@ -16,8 +14,12 @@ final class Cat
 	private $name;
 	private $age;
 	private $energy;
-	private $min = 0;
-	private $max = 100;
+
+	private $minEnergy = 0;
+	private $maxEnergy = 100;
+
+	private $operation;
+	private $amountEnergy;
 
 	public function __construct(string $name, int $age, int $energy)
 	{
@@ -25,6 +27,7 @@ final class Cat
 		$this->age    = $age;
 		$this->energy = $energy;
 
+		// Data validation.
 		$this->checkName();
 		$this->checkAge();
 		$this->checkEnergy();
@@ -70,14 +73,14 @@ final class Cat
 	// The cat makes a sound.
 	public function makeSound() : string
 	{
-		$this->energy -= 10;
+		$this->calculateEnergy($this->operation = '-', $this->amountEnergy = 10);
 		return 'Meow-meow!';
 	}
 
 	// The cat is jumping.
 	public function jump() : string
 	{
-		$this->energy -= 20;
+		$this->calculateEnergy($this->operation = '-', $this->amountEnergy = 20);
 		return $this->formattingName() . ' jumping.';
 	}
 
@@ -85,14 +88,14 @@ final class Cat
 	// The cat is eating.
 	public function eat() : string
 	{
-		$this->energy += 30;
+		$this->calculateEnergy($this->operation = '+', $this->amountEnergy = 30);
 		return 'Thanks! I have eaten.';
 	}
 
 	// The cat is sleeping.
 	public function sleep() : string
 	{
-		$this->energy += 50;
+		$this->calculateEnergy($this->operation = '+', $this->amountEnergy = 50);
 		return 'Yes, I slept.';
 	}
 
@@ -102,9 +105,18 @@ final class Cat
 		return ucfirst(strtolower($this->name));
 	}
 
+	private function calculateEnergy(string $operation, int $amountEnergy) : void
+	{
+		if ($this->operation == '+') {
+			$this->energy += $this->amountEnergy;
+		} else {
+			$this->energy -= $this->amountEnergy;
+		}
+	}
+
 	// Exceptions System.
 	// Checking the name for correctness.
-	private function checkName()
+	private function checkName() : void
 	{
 		if (strlen($this->name) <= 0) {
 			throw new ShortNameException;
@@ -116,7 +128,7 @@ final class Cat
 	}
 
 	// Checking the age for correctness.
-	private function checkAge()
+	private function checkAge() : void
 	{
 		if ($this->age <= 0) {
 			throw new MinimumAgeException;
@@ -128,13 +140,13 @@ final class Cat
 	}
 
 	// Checking the energy for correctness.
-	private function checkEnergy()
+	private function checkEnergy() : void
 	{
-		if ($this->energy <= $this->min) {
+		if ($this->energy <= $this->minEnergy) {
 			throw new MinimumEnergyException;
 		}
 
-		if ($this->energy > $this->max) {
+		if ($this->energy > $this->maxEnergy) {
 			throw new MaximumEnergyException;
 		}
 	}

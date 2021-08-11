@@ -24,7 +24,7 @@ class MinimumAgeException extends CatException
 
 class MaximumAgeException extends CatException
 {
-	protected $message = 'MaximumAgeException: Age should not be more than 38 years old! If this is true, then your cat has broken the Guinness record!';
+	protected $message = 'MaximumAgeException: Age should not be more than 38 years old! If this is true, then your cat has broken the Guinness record! :)';
 }
 
 class MinimumEnergyException extends CatException
